@@ -37,18 +37,19 @@ const Calender: FC<ICalender> = (props): ReactElement => {
         <CalenderHeader date={date} setDate={setDate} />
         <CalenderWeeks days={DAYS_IN_A_WEEK} />
         {Array.from({ length: pre_days }).map((_, idx) => {
-          return <Cell key={idx} className="w-full aspect-square grid place-content-center hover:bg-clip-padding hover:backdrop-filter hover:backdrop-blur-sm hover:bg-opacity-50 rounded-sm cursor-pointer" />
+          return <Cell key={idx} className="w-full aspect-square grid place-content-center hover:bg-clip-padding hover:backdrop-filter hover:backdrop-blur-sm hover:bg-opacity-50 rounded-sm" />
         })}
         {Array.from({ length: number_of_days }).map((_, idx) => {
           const date = idx + 1
           const isToday = date === present_day
+          const isSelected = date === day
 
-          return <Cell key={idx} className={`w-full aspect-square grid place-content-center hover:bg-clip-padding rounded-sm cursor-pointer ${IS_TODAY && isToday ? "bg-gradient-to-r from-fuchsia-600 to-pink-600" : "hover:backdrop-filter hover:backdrop-blur-sm hover:bg-opacity-50"}`} onClick={handleClick}>
+          return <Cell key={idx} className={`w-full aspect-square grid place-content-center hover:bg-clip-padding rounded-sm cursor-pointer ${isSelected && day !== present_day ? "border border-white" : ""} ${IS_TODAY && isToday ? "bg-gradient-to-r from-fuchsia-600 to-pink-600" : "hover:backdrop-filter hover:backdrop-blur-sm hover:bg-opacity-50"}`} onClick={handleClick}>
             {date}
           </Cell>
         })}
         {Array.from({ length: post_days }).map((_, idx) => {
-          return <Cell key={idx} className="w-full aspect-square grid place-content-center hover:bg-clip-padding hover:backdrop-filter hover:backdrop-blur-sm hover:bg-opacity-50 rounded-sm cursor-pointer" />
+          return <Cell key={idx} className="w-full aspect-square grid place-content-center hover:bg-clip-padding hover:backdrop-filter hover:backdrop-blur-sm hover:bg-opacity-50 rounded-sm" />
         })}
       </div>
     </section>
